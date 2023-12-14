@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" defer></script>
+    <script src="js/Main.js" defer></script>
+    <script src="js/Cart.js" defer></script>
+
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Nike</title>
 </head>
+
 <body>
-    
+    <main>
+        <div id="left-bar">
+            <h1>CampusShop</h1>
+            <div class="categorias">
+                <button class="btn active" data-categoria="todos" onclick="toggleButton(this)">
+                    <img src="img/casa.png" alt="">
+                    Todos Los Productos
+                </button>
+                <button class="btn" data-categoria="abrigos" onclick="toggleButton(this)">
+                    <img src="img/abrigo.png" alt="">
+                    Abrigos
+                </button>
+                <button class="btn" data-categoria="camisetas" onclick="toggleButton(this)">
+                    <img src="img/camiseta.png" alt="">
+                    Camisetas
+                </button>
+                <button class="btn" data-categoria="pantalones" onclick="toggleButton(this)">
+                    <img src="img/pantalones.png" alt="">
+                    Pantalones
+                </button>
+            </div>
+            <div class="carrito">
+                <button class="btn" data-categoria="carrito" onclick="toggleButton(this)">
+                    <img src="img/carrito.png" alt="">
+                    Carrito de compras <span id="cantidad-carrito">0</span>
+                </button>
+                <button class="btn" onclick="reiniciarCarrito()">
+                    <img src="img/reiniciar.png" alt="">
+                    Reiniciar carrito </button>
+            </div>
+            <footer>&#169 2023 Campuslands</footer>
+        </div>
+        <div id="content-Products">
+
+        </div>
+    </main>
 </body>
+
 </html>

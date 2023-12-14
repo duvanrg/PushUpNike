@@ -33,12 +33,16 @@ namespace API.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
         public static void ConfigureCors(this IServiceCollection services) =>
-        services.AddCors(options =>
-        {
-            options.AddPolicy("CorsPolicy", builder =>
-            builder.AllowAnyOrigin().AllowAnyOrigin().AllowAnyHeader()
+    services.AddCors(options =>
+    {
+        options.AddPolicy("CorsPolicy", builder =>
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
             );
-        });
+    });
+
     }
 
 }

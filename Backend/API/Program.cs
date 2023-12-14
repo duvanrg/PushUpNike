@@ -3,38 +3,44 @@ using API.Extensions;
 using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddAplicationServices();
-builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
-builder.Services.ConfigureRateLimiting();
-
-builder.Services.AddDbContext<ApiContext>(options =>
+internal class Program
 {
-    string connectionString = builder.Configuration.GetConnectionString("ConexMySql");
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
-var app = builder.Build();
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        // Add services to the container.
+
+        builder.Services.AddControllers();
+        builder.Services.ConfigureCors();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
+        builder.Services.AddAplicationServices();
+        builder.Services.ConfigureRateLimiting();
+
+        builder.Services.AddDbContext<ApiContext>(options =>
+        {
+            string connectionString = builder.Configuration.GetConnectionString("ConexMySql");
+            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        });
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseCors("MyCorsPolicy");
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseCors("CorsPolicy");
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
