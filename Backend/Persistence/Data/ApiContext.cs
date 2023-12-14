@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Data;
 
-public partial class ApiContext : DbContext
+public  class ApiContext : DbContext
 {
     public ApiContext()
     {

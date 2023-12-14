@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain.Entities;
+namespace API.Dtos;
 
-public  class Producto : BaseEntityS
+public  class ProductoDto : BaseEntityS
 {
 
     public string Titulo { get; set; } = null!;
@@ -14,5 +14,5 @@ public  class Producto : BaseEntityS
 
     public decimal Precio { get; set; }
 
-    public virtual Categoria Categoria { get; set; } = null!;
+    // public virtual Categoria Categoria { get; set; } = null!;
 }

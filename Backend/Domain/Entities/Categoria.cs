@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Categoria : BaseEntityS
+public  class Categoria : BaseEntityS
 {
 
     public string Nombre { get; set; } = null!;
